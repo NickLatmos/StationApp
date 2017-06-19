@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_weather_station"
+            android:icon="@drawable/weather_station_img"
+            android:title="Weather Station" />
+        <item
+            android:id="@+id/nav_new_weather_station"
+            android:icon="@drawable/add_img"
+            android:title="New" />
+        <item
+            android:id="@+id/nav_delete_weather_station"
+            android:icon="@drawable/delete_img"
+            android:title="Delete" />
+    </group>
+
+    <item android:title="Graphics">
+        <menu android:checkableBehavior="single">
+            <item
+                android:id="@+id/nav_plot_diagram"
+                android:icon="@drawable/plot_img"
+                android:title="Plot Diagram" />
+        </menu>
+    </item>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_remote_control"
+                android:icon="@drawable/remote_control_img"
+                android:title="Remote Control" />
+        </menu>
+    </item>
+
+    <item android:title="Google Maps">
+        <menu>
+            <item
+                android:id="@+id/nav_google_maps"
+                android:icon="@drawable/maps_img"
+                android:title="Maps" />
+        </menu>
+    </item>
+
+</menu>

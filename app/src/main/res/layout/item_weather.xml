@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+
+        <!--Datetime-->
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <!--Date-->
+            <TextView
+                android:text="12/05"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/tvDate" />
+            <!--Time-->
+            <TextView
+                android:text="17:30"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/tvTime"/>
+       </LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_height="match_parent"
+            android:background="#000000" />
+
+        <!--Weather-->
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="37dp"
+            android:layout_marginLeft="2dp"
+            android:id="@+id/weatherImg"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/sun_img"/>
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:text="Weather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvWeather" />
+        </LinearLayout>
+
+        <!--Temperature-->
+        <ImageView
+            android:layout_width="11dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:id="@+id/temperatureImg"
+            app:srcCompat="@drawable/temperature_img"/>
+
+        <TextView
+            android:text="30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:id="@+id/tvTemperature"
+            android:layout_gravity="center"/>
+
+        <!--Humidity-->
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:id="@+id/humidityImg"
+            app:srcCompat="@drawable/humidity_img"/>
+
+        <TextView
+            android:text="20%"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:id="@+id/tvHumidity"
+            android:layout_gravity="center"/>
+
+        <!--Pressure-->
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:id="@+id/pressureImg"
+            app:srcCompat="@drawable/pressure_img"/>
+
+        <TextView
+            android:text="100bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:id="@+id/tvPressure"
+            android:layout_gravity="center"/>
+
+        <!--Wind-->
+        <!--
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/windImg"
+            app:srcCompat="@drawable/anemometer_img"/>
+
+        <TextView
+            android:text="25m/s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvWind"
+            android:layout_gravity="center"/>
+              -->
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:padding="5dp"
+        android:text=" Insert your weather \nstation's parameters"
+        android:gravity="center"
+    />
+
+    <EditText
+        android:id="@+id/etWeatherStationID"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:padding="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:hint="ID" />
+    <EditText
+        android:id="@+id/etWeatherStationName"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:padding="5dp"
+        android:layout_marginBottom="5dp"
+        android:hint="Name e.g. AUTH station" />
+    <EditText
+        android:id="@+id/etPlaceLatitude"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
+        android:hint="Latitude e.g. 39.7406"/>
+    <EditText
+        android:id="@+id/etPlaceLongitude"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
+        android:hint="Longitude e.g. 22.2881" />
+</LinearLayout>

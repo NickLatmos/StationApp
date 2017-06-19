@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="12dp"
+        android:text="Weather Station: "
+        android:textStyle="bold"
+        android:id="@+id/tvMapInfoWeatherStation"
+        android:layout_gravity="center"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="12dp"
+        android:id="@+id/tvMapInfoLatitude"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="12dp"
+        android:id="@+id/tvMapInfoLongitude"/>
+
+    <!-- Weather -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="2dp"
+            android:id="@+id/imgMapInfoWeather"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/not_found_img"
+            android:layout_weight="0.1"/>
+
+        <TextView
+            android:id="@+id/tvMapInfoWeather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="12dp"
+            android:text="Not Available"
+
+            android:layout_gravity="center"
+            android:layout_weight="0.9"/>
+    </LinearLayout>
+
+    <!-- Temperature -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="8dp"
+            app:srcCompat="@drawable/temperature_img"
+            android:layout_weight="0.1"/>
+
+        <TextView
+            android:id="@+id/tvMapInfoTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:textSize="12dp"
+            android:layout_weight="0.9"
+            android:text="Not Available"/>
+    </LinearLayout>
+
+    <!-- Case temperature -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="7dp"
+            app:srcCompat="@drawable/case_temperature_img"
+            android:layout_weight="0.1"/>
+
+        <TextView
+            android:id="@+id/tvMapInfoCaseTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:textSize="12dp"
+            android:layout_weight="0.9"
+            android:text="Not Available"/>
+    </LinearLayout>
+
+    <!-- Humidity -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            app:srcCompat="@drawable/humidity_img"
+            android:layout_weight="0.1"/>
+
+        <TextView
+            android:id="@+id/tvMapInfoHumidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:textSize="12dp"
+            android:layout_weight="0.9"
+            android:text="Not Available"/>
+    </LinearLayout>
+
+    <!-- Pressure -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="7dp"
+            app:srcCompat="@drawable/pressure_img"/>
+
+        <TextView
+            android:id="@+id/tvMapInfoPressure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:textSize="12dp"
+            android:text="Not Available"/>
+    </LinearLayout>
+
+    <!-- Wind
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="7dp"
+            app:srcCompat="@drawable/wind_img"/>
+
+        <TextView
+            android:id="@+id/tvMapInfoWind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:textSize="19dp" />
+    </LinearLayout>
+    -->
+
+    <!-- Battery Voltage -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="7dp"
+            app:srcCompat="@drawable/battery_img"/>
+
+        <TextView
+            android:id="@+id/tvMapInfoBattery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:textSize="12dp"
+            android:text="Not Available"/>
+    </LinearLayout>
+
+</LinearLayout>

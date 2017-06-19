@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:padding="5dp"
+        android:text="Weather Station: "
+        android:gravity="center"
+        android:id="@+id/tvDataPointWeatherStation"/>
+
+    <TextView
+        android:id="@+id/tvDataPointWeather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:padding="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/tvDataPointDate"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:layout_marginBottom="5dp"
+        android:padding="5dp" />
+
+    <TextView
+        android:id="@+id/tvDataPointTime"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:layout_marginBottom="5dp"
+        android:padding="5dp" />
+
+    <TextView
+        android:id="@+id/tvDataPointTemperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:padding="5dp"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:id="@+id/tvDataPointHumidity"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:padding="5dp"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:id="@+id/tvDataPointPressure"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:padding="5dp"
+        android:layout_marginBottom="5dp"/>
+    <!--
+    <TextView
+        android:id="@+id/tvDataPointWind"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:layout_marginBottom="5dp"
+        android:padding="5dp" />
+        -->
+</LinearLayout>

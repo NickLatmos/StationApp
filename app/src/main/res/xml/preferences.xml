@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="Syncing Information"
+        android:key="sync_category">
+
+        <ListPreference
+            android:key="weather_measurements_max_length"
+            android:title="Number of weather measurements"
+            android:summary="Define the max number of measurements to display"
+            android:defaultValue="20"
+            android:entries="@array/weather_measurements_max_length_array"
+            android:entryValues="@array/weather_measurements_max_length_array"/>
+
+        <ListPreference
+            android:key="weather_measurements_interval"
+            android:title="Measurements Interval"
+            android:summary="Define the weather measurements interval"
+            android:defaultValue="10"
+            android:entries="@array/weather_measurements_interval_array"
+            android:entryValues="@array/weather_measurements_interval_values_array"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Remote Control"
+        android:key="rc_control_settings">
+
+        <CheckBoxPreference
+            android:key="perform_automatic_rc_deactivation"
+            android:summary="Enable/Disable Automatic RC Deactivation"
+            android:title="Automatic RC Deactivation"
+            android:defaultValue="true" />
+
+        <EditTextPreference
+            android:key="rc_deactivation_time"
+            android:title="Deactivation Time"
+            android:summary="Enter the time after which the remote relay will turn off"
+            android:dialogTitle="Set time in minutes"
+            android:dialogMessage="Enter the time after which the remote relay will turn off"
+            android:defaultValue="60"
+            android:inputType="number"
+            android:dependency="perform_automatic_rc_deactivation"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Battery"
+        android:key="battery_indicator_settings">
+
+        <CheckBoxPreference
+            android:key="perform_auto_check_for_battery_voltage"
+            android:summary="Enable/Disable Battery Notifications when battery is running low"
+            android:title="Automatic Battery Monitoring"
+            android:defaultValue="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

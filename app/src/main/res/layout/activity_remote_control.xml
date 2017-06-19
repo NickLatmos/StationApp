@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_remote_control"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="latmos.myweatherstation.RemoteControlActivity">
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spWeatherStationNameRemoteControl"
+        android:spinnerMode="dropdown" />
+
+    <!-- Total Millilitres -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_marginTop="15dp">
+
+    <TextView
+        android:text="Total Millilitres: "
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="19dp"
+        android:layout_weight="0.5"/>
+
+    <TextView
+        android:text="test"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvTotalMillilitres"
+        android:textSize="19dp"
+        android:layout_weight="0.5"/>
+    </LinearLayout>
+
+    <!-- Flow Rate -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:text="Flow Rate : "
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="19dp"
+            android:layout_weight="0.5"/>
+
+        <TextView
+            android:text="test"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvFlowRate"
+            android:textSize="19dp"
+            android:layout_weight="0.5"/>
+    </LinearLayout>
+
+    <!-- Last time opened -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:weightSum="1">
+
+        <TextView
+            android:text="Last time opened: "
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="19dp"
+            android:layout_weight="0.5"/>
+
+        <TextView
+            android:text="test"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvRCLastTimeOpened"
+            android:textSize="19dp"
+            android:layout_weight="0.5" />
+    </LinearLayout>
+
+    <Switch
+        android:text="Remote Control"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/swRC"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:text="Please make sure that you connect the right load at the Output Connector rated at 12 Volts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="20dp"
+        android:textStyle="italic"/>
+
+</LinearLayout>
