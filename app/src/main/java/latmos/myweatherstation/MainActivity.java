@@ -45,10 +45,10 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-   // private final String GET_VALUES_URI = "http://alatmos.dyndns.org:5000/weather_station/";
-    //private static String ID_VALIDATION_URL = "http://alatmos.dyndns.org:5000/weather_station/validate/";
-    private final String GET_VALUES_URI = "http://192.168.1.60:5000/weather_station/";
-    private static String ID_VALIDATION_URL = "http://192.168.1.60:5000/weather_station/validate/";
+    private final String GET_VALUES_URI = "http://alatmos.dyndns.org:5000/weather_station/";
+    private static String ID_VALIDATION_URL = "http://alatmos.dyndns.org:5000/weather_station/validate/";
+    //private final String GET_VALUES_URI = "http://192.168.1.60:5000/weather_station/";
+    //private static String ID_VALIDATION_URL = "http://192.168.1.60:5000/weather_station/validate/";
 
     private static WeatherStationDBHandler weatherStationDBHandler;
     private ArrayList<Weather> arrayOfWeatherMeasurements;
@@ -291,7 +291,7 @@ public class MainActivity extends AppCompatActivity
         final ArrayList<Integer> selectedItems = new ArrayList<>();
 
         AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle("Select The Difficulty Level")
+                .setTitle("Select the station to be deleted")
                 .setMultiChoiceItems(names, null, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int indexSelected, boolean isChecked) {

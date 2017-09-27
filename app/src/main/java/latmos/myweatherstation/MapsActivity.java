@@ -52,6 +52,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     TextView tvMapInfoLatitude;
     TextView tvMapInfoLongitude;
+    TextView tvMapInfoDate;
+    TextView tvMapInfoTime;
     TextView tvMapInfoWeatherStation;
     TextView tvMapInfoWeather;
     TextView tvMapInfoTemperature;
@@ -201,6 +203,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 tvMapInfoLatitude = (TextView) windowView.findViewById(R.id.tvMapInfoLatitude);
                 tvMapInfoLongitude = (TextView) windowView.findViewById(R.id.tvMapInfoLongitude);
+                tvMapInfoDate = (TextView) windowView.findViewById(R.id.tvMapInfoDate);
+                tvMapInfoTime = (TextView) windowView.findViewById(R.id.tvMapInfoTime);
                 tvMapInfoWeatherStation = (TextView) windowView.findViewById(R.id.tvMapInfoWeatherStation);
                 tvMapInfoWeather = (TextView) windowView.findViewById(R.id.tvMapInfoWeather);
                 tvMapInfoTemperature = (TextView) windowView.findViewById(R.id.tvMapInfoTemperature);
@@ -215,6 +219,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 LatLng latLng = marker.getPosition();
                 tvMapInfoLatitude.setText("Latitude: " + df.format(latLng.latitude));
                 tvMapInfoLongitude.setText("Longitude: " + df.format(latLng.longitude));
+                tvMapInfoDate.setText("Date: " + weather.getDateInCustomString() + '/' + Calendar.getInstance().get(Calendar.YEAR));
+                tvMapInfoTime.setText("Time: " + weather.getTimeInCustomString());
 
                 if(weather != null && weatherStation != null) {
 

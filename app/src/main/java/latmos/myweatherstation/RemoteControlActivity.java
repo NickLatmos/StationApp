@@ -42,8 +42,8 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class RemoteControlActivity extends AppCompatActivity {
 
-    //public static String VALVE_URI = "http://alatmos.dyndns.org:5000/weather_station/valve/";
-    public static String VALVE_URI = "http://192.168.1.60:5000/weather_station/valve/";
+    public static String VALVE_URI = "http://alatmos.dyndns.org:5000/weather_station/valve/";
+    //public static String VALVE_URI = "http://192.168.1.60:5000/weather_station/valve/";
 
     private TextView tvTotalMillilitres;
     private TextView tvFlowRate;
@@ -69,8 +69,8 @@ public class RemoteControlActivity extends AppCompatActivity {
         // Add parent Activity to Manifest
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        tvTotalMillilitres = (TextView) findViewById(R.id.tvTotalMillilitres);
-        tvFlowRate = (TextView) findViewById(R.id.tvFlowRate);
+        //tvTotalMillilitres = (TextView) findViewById(R.id.tvTotalMillilitres);
+        //tvFlowRate = (TextView) findViewById(R.id.tvFlowRate);
         tvRCLastTimeOpened = (TextView) findViewById(R.id.tvRCLastTimeOpened);
         swRC = (Switch) findViewById(R.id.swRC);
         weatherStationDropdown = (Spinner) findViewById(R.id.spWeatherStationNameRemoteControl);

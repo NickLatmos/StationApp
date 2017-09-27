@@ -27,6 +27,20 @@
         android:textSize="12dp"
         android:id="@+id/tvMapInfoLongitude"/>
 
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="12dp"
+        android:id="@+id/tvMapInfoDate"
+        android:text="Not Available"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="12dp"
+        android:id="@+id/tvMapInfoTime"
+        android:text="Not Available"/>
+
     <!-- Weather -->
     <LinearLayout
         android:layout_width="match_parent"

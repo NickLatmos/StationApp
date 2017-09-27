@@ -17,7 +17,7 @@
         android:id="@+id/spWeatherStationNameRemoteControl"
         android:spinnerMode="dropdown" />
 
-    <!-- Total Millilitres -->
+    <!-- Total Millilitres
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         android:layout_weight="0.5"/>
     </LinearLayout>
 
-    <!-- Flow Rate -->
+     Flow Rate
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
             android:textSize="19dp"
             android:layout_weight="0.5"/>
     </LinearLayout>
-
+-->
     <!-- Last time opened -->
     <LinearLayout
         android:layout_width="match_parent"

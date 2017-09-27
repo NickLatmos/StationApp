@@ -20,8 +20,8 @@ import java.util.TimerTask;
 // Provides the latest measurements when user clicks on a weather station marker.
 public class ServerCommunicationService extends Service {
 
-    //private final String LAST_MEASUREMENT_URI = "http://alatmos.dyndns.org:5000/weather_station/last_measurement/";  // +ID
-    private final String LAST_MEASUREMENT_URI = "http://192.168.1.60:5000/weather_station/last_measurement/";  // +ID
+    private final String LAST_MEASUREMENT_URI = "http://alatmos.dyndns.org:5000/weather_station/last_measurement/";  // +ID
+    //private final String LAST_MEASUREMENT_URI = "http://192.168.1.60:5000/weather_station/last_measurement/";  // +ID
     private Timer timer = new Timer();
 
     public static ArrayList<Weather> weatherObjService;

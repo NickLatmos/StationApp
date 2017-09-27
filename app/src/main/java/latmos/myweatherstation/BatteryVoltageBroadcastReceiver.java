@@ -27,8 +27,8 @@ import java.util.Date;
 // Receives the battery voltage once every 2 hours and if is lower than 10.9V shows a notification
 public class BatteryVoltageBroadcastReceiver extends BroadcastReceiver {
 
-   // private String URI_BATTERY_VOLTAGE = "http://alatmos.dyndns.org:5000/weather_station/";
-    private String URI_BATTERY_VOLTAGE = "http://192.168.1.60:5000/weather_station/";
+    private String URI_BATTERY_VOLTAGE = "http://alatmos.dyndns.org:5000/weather_station/";
+    //private String URI_BATTERY_VOLTAGE = "http://192.168.1.60:5000/weather_station/";
 
     private static Float BATTERY_THRESHOLD_MESSAGE = 10.9f;
     private NotificationCompat.Builder builder;

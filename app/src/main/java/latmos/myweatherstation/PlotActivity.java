@@ -29,6 +29,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,6 +45,7 @@ import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 import com.borax12.materialdaterangepicker.time.RadialPickerLayout;
 import com.borax12.materialdaterangepicker.time.TimePickerDialog;
 
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
@@ -66,8 +68,8 @@ import permissions.dispatcher.RuntimePermissions;
 @RuntimePermissions
 public class PlotActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener,TimePickerDialog.OnTimeSetListener {
 
-    //private String URI = "http://alatmos.dyndns.org:5000/weather_station/";
-    private String URI = "http://192.168.1.60:5000/weather_station/";
+    private String URI = "http://alatmos.dyndns.org:5000/weather_station/";
+    //private String URI = "http://192.168.1.60:5000/weather_station/";
     private Integer HOUR_DIFFERENCE_WITH_SERVER = 3;
 
     private enum DATA_TYPE {
@@ -94,8 +96,10 @@ public class PlotActivity extends AppCompatActivity implements DatePickerDialog.
     private ArrayList<Weather> arrayOfWeatherMeasurements;
     private String fromYear, fromMonth, fromDay, toYear, toMonth, toDay;
     private String fromHour, fromMinute, toHour, toMinute;
-    private String fromYearUser, fromMonthUser, fromDayUser, toYearUser, toMonthUser, toDayUser;
-    private String fromHourUser, fromMinuteUser, toHourUser, toMinuteUser;
+    private String fromYearUser="", fromMonthUser, fromDayUser, toYearUser, toMonthUser, toDayUser;
+    private String fromHourUser="", fromMinuteUser, toHourUser, toMinuteUser;
+
+    private DateFormat dateTimeFormatAtXAxis = new SimpleDateFormat("MM/dd HH:mm");
 
     private static WeatherStationDBHandler weatherStationDBHandler;
 
@@ -226,8 +230,12 @@ public class PlotActivity extends AppCompatActivity implements DatePickerDialog.
         btDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                arrayOfWeatherMeasurements.clear();
-                new FetchContentFromServer().execute(URI);
+                if(!fromYearUser.equals("") && !fromHourUser.equals(""))
+                {
+                    arrayOfWeatherMeasurements.clear();
+                    new FetchContentFromServer().execute(URI);
+                }else
+                    Toast.makeText(PlotActivity.this, "Choose Date and Time Range", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -376,6 +384,38 @@ public class PlotActivity extends AppCompatActivity implements DatePickerDialog.
         Toast.makeText(this,"You have denied permission", Toast.LENGTH_LONG).show();
     }
 
+    // Plot data
+    void plotData()
+    {
+        final android.os.Handler handler = new android.os.Handler(Looper.getMainLooper()){
+            @Override
+            public void handleMessage(Message message) {
+                boolean create_graph = message.getData().getBoolean("graph");  // not used
+
+                // Create the graph when the data have been downloaded
+                if(data_type != DATA_TYPE.BATTERY)
+                    createGraph(0,arrayOfWeatherMeasurements.size(), getMin(arrayOfWeatherMeasurements,data_type),
+                            getMax(arrayOfWeatherMeasurements, data_type));
+                else
+                    createGraphFloat(0,arrayOfWeatherMeasurements.size(), getMinFloat(arrayOfWeatherMeasurements,data_type),
+                            getMaxFloat(arrayOfWeatherMeasurements, data_type));
+            }
+        };
+
+        Thread plotThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getDataPoints(data_type);
+                Message message = handler.obtainMessage();
+                Bundle b = new Bundle();
+                b.putBoolean("graph",true);
+                message.setData(b);
+                handler.sendMessage(message);
+            }
+        });
+        plotThread.start();
+    }
+
     /*
     * This function gets the datapoints in oder to create the graph.
     * In the future it will call a web service to receive them
@@ -384,7 +424,8 @@ public class PlotActivity extends AppCompatActivity implements DatePickerDialog.
 
         series = new LineGraphSeries<DataPoint>();
 
-        series.setOnDataPointTapListener(new OnDataPointTapListener() {
+        //New
+        /*series.setOnDataPointTapListener(new OnDataPointTapListener() {
             @Override
             public void onTap(Series series, DataPointInterface dataPoint) {
                 if(arrayOfWeatherMeasurements.size() != 0) {
@@ -419,58 +460,47 @@ public class PlotActivity extends AppCompatActivity implements DatePickerDialog.
                      /*text = "Wind: " + arrayOfWeatherMeasurements.get(Integer.parseInt(String.valueOf(dataPoint.getX()))).getWind();
                     tvDataPointWind.setText(text);*/
 
-                    dataDialog.setView(dataView)
+                   /* dataDialog.setView(dataView)
                             .setPositiveButton("OK", null)
                             .show();
                 }
             }
-        });
+        });*/
 
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0 ; i < arrayOfWeatherMeasurements.size(); i++){
-                    switch (data_type){
-                        case TEMPERATURE:
-                            series.appendData(new DataPoint(i,
-                                    arrayOfWeatherMeasurements.get(i).getTemperature()), true, arrayOfWeatherMeasurements.size());
-                            break;
+        for (int i = 0 ; i < arrayOfWeatherMeasurements.size(); i++){
+            switch (data_type){
+                case TEMPERATURE:
+                    series.appendData(new DataPoint(arrayOfWeatherMeasurements.get(i).getDateTime().getTime(),
+                            arrayOfWeatherMeasurements.get(i).getTemperature()), true, arrayOfWeatherMeasurements.size());
+                    break;
 
-                        case HUMIDITY:
-                            series.appendData(new DataPoint(i,
-                                    arrayOfWeatherMeasurements.get(i).getHumidity()), true, arrayOfWeatherMeasurements.size());
-                            break;
+                case HUMIDITY:
+                    series.appendData(new DataPoint(arrayOfWeatherMeasurements.get(i).getDateTime().getTime(),
+                            arrayOfWeatherMeasurements.get(i).getHumidity()), true, arrayOfWeatherMeasurements.size());
+                    break;
 
-                        case PRESSURE:
-                            series.appendData(new DataPoint(i,
-                                    arrayOfWeatherMeasurements.get(i).getPressure()), true, arrayOfWeatherMeasurements.size());
-                            break;
+                case PRESSURE:
+                    series.appendData(new DataPoint(arrayOfWeatherMeasurements.get(i).getDateTime().getTime(),
+                            arrayOfWeatherMeasurements.get(i).getPressure()), true, arrayOfWeatherMeasurements.size());
+                    break;
 
-                        case BATTERY:
-                            series.appendData(new DataPoint(i,
-                                    arrayOfWeatherMeasurements.get(i).getBatteryVoltage()), true, arrayOfWeatherMeasurements.size());
-                            break;
+                case BATTERY:
+                    series.appendData(new DataPoint(arrayOfWeatherMeasurements.get(i).getDateTime().getTime(),
+                            arrayOfWeatherMeasurements.get(i).getBatteryVoltage()), true, arrayOfWeatherMeasurements.size());
+                    break;
 
-                        /*case WIND:
-                            series.appendData(new DataPoint(Double.parseDouble(arrayOfWeatherMeasurements.get(i).getDate()),
-                                    arrayOfWeatherMeasurements.get(i).getWind()), true, arrayOfWeatherMeasurements.size());
-                            break;*/
-                    }
-                }
-                series.setDrawDataPoints(true);
-                series.setDataPointsRadius(6);
-                series.setColor(seriesColor);
-                //series.setAnimated(true);
-                series.setDrawBackground(false);
-                series.setTitle(dropdown.getSelectedItem().toString());
-                graph.addSeries(series);
-                graph.getLegendRenderer().setVisible(false);
-                //graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
-
+                /*case WIND:
+                    series.appendData(new DataPoint(Double.parseDouble(arrayOfWeatherMeasurements.get(i).getDate()),
+                            arrayOfWeatherMeasurements.get(i).getWind()), true, arrayOfWeatherMeasurements.size());
+                    break;*/
             }
-        };
-        Thread th = new Thread(r);
-        th.start();
+        }
+        series.setDrawDataPoints(true);
+        series.setDataPointsRadius(6);
+        series.setColor(seriesColor);
+        //series.setAnimated(true);
+        series.setDrawBackground(false);
+        series.setTitle(dropdown.getSelectedItem().toString());
     }
 
     /*
@@ -479,16 +509,35 @@ public class PlotActivity extends AppCompatActivity implements DatePickerDialog.
     public void createGraph(int minX, int maxX, int minY, int maxY)
     {
         graph.removeAllSeries();
+        graph.addSeries(series);
+
+        // set custom time label formatter
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if(isValueX){
+                    Date d = new Date((long) (value));
+                    return (dateTimeFormatAtXAxis.format(d));
+                }else
+                    return super.formatLabel(value, isValueX);
+            }
+        });
+        graph.getGridLabelRenderer().setNumHorizontalLabels(2); // only 4 because of the space
+
+        // set manual x bounds to have nice steps
+        graph.getViewport().setMinX(arrayOfWeatherMeasurements.get(0).getDateTime().getTime());
+        graph.getViewport().setMaxX(arrayOfWeatherMeasurements.get(arrayOfWeatherMeasurements.size() - 1).getDateTime().getTime());
+        graph.getViewport().setXAxisBoundsManual(true);
 
         // enable scaling and scrolling
         graph.getViewport().setScalableY(true);
         graph.getViewport().setScalable(true);
         graph.getViewport().setScrollable(true);
         graph.getViewport().setScrollableY(true);
-        graph.getViewport().setMaxX(maxX);
-        graph.getViewport().setMinX(minX);
         graph.getViewport().setMaxY(maxY);
         graph.getViewport().setMinY(minY);
+
+        graph.getLegendRenderer().setVisible(false);
     }
 
     /*
@@ -497,16 +546,35 @@ public class PlotActivity extends AppCompatActivity implements DatePickerDialog.
     public void createGraphFloat(int minX, int maxX, Float minY, Float maxY)
     {
         graph.removeAllSeries();
+        graph.addSeries(series);
+
+        // set custom time label formatter
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if(isValueX){
+                    Date d = new Date((long) (value));
+                    return (dateTimeFormatAtXAxis.format(d));
+                }else
+                    return super.formatLabel(value, isValueX);
+            }
+        });
+        graph.getGridLabelRenderer().setNumHorizontalLabels(2); // only 4 because of the space
+
+        // set manual x bounds to have nice steps
+        graph.getViewport().setMinX(arrayOfWeatherMeasurements.get(0).getDateTime().getTime());
+        graph.getViewport().setMaxX(arrayOfWeatherMeasurements.get(arrayOfWeatherMeasurements.size() - 1).getDateTime().getTime());
+        graph.getViewport().setXAxisBoundsManual(true);
 
         // enable scaling and scrolling
         graph.getViewport().setScalableY(true);
         graph.getViewport().setScalable(true);
         graph.getViewport().setScrollable(true);
         graph.getViewport().setScrollableY(true);
-        graph.getViewport().setMaxX(maxX);
-        graph.getViewport().setMinX(minX);
         graph.getViewport().setMaxY(maxY);
         graph.getViewport().setMinY(minY);
+
+        graph.getLegendRenderer().setVisible(false);
     }
 
     // Fetches weather measurements and displays them in UI.
@@ -578,13 +646,15 @@ public class PlotActivity extends AppCompatActivity implements DatePickerDialog.
                         .show();
             }else {
                 Toast.makeText(PlotActivity.this, "Size = " + arrayOfWeatherMeasurements.size(), Toast.LENGTH_SHORT).show();
-                if(data_type != DATA_TYPE.BATTERY)
+                //New
+                /*if(data_type != DATA_TYPE.BATTERY)
                     createGraph(0,arrayOfWeatherMeasurements.size(), getMin(arrayOfWeatherMeasurements,data_type),
                             getMax(arrayOfWeatherMeasurements, data_type));
                 else
                     createGraphFloat(0,arrayOfWeatherMeasurements.size(), getMinFloat(arrayOfWeatherMeasurements,data_type),
                             getMaxFloat(arrayOfWeatherMeasurements, data_type));
-                getDataPoints(data_type);
+                getDataPoints(data_type);*/
+                plotData();
             }
         }
     }
@@ -759,6 +829,7 @@ public class PlotActivity extends AppCompatActivity implements DatePickerDialog.
                     Calendar calTime = Calendar.getInstance();
                     calTime.setTime(receivedTime);
 
+                    // Server difference is 3 hours
                     if(calTime.get(Calendar.HOUR_OF_DAY) >= 21)
                         calDate.add(Calendar.DAY_OF_MONTH, 1);
                     calTime.add(Calendar.HOUR_OF_DAY, 3);       // Add the difference in hours

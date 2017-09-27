@@ -39,7 +39,7 @@
         android:textSize="19dp"
         android:layout_marginBottom="5dp"
         android:padding="5dp"
-        android:hint="Latitude e.g. 39.7406"/>
+        android:hint="Latitude e.g. 40.4881"/>
     <EditText
         android:id="@+id/etPlaceLongitude"
         android:inputType="numberDecimal"
@@ -48,5 +48,5 @@
         android:textSize="19dp"
         android:layout_marginBottom="5dp"
         android:padding="5dp"
-        android:hint="Longitude e.g. 22.2881" />
+        android:hint="Longitude e.g. 23.5938" />
 </LinearLayout>

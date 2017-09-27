@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class WriteSDCard {
 
-    private String[] fileDataTypes = {"Temperature", "Humidity", "Pressure","Battery", "Date", "Time"};
+    private String[] fileDataTypes = {"Temperature", "Case Temperature", "Humidity", "Pressure","Battery", "Date", "Time"};
     private Context context;
 
     public WriteSDCard(Context context) {
@@ -30,37 +30,16 @@ public class WriteSDCard {
             FileOutputStream f = new FileOutputStream(file);
             PrintWriter pw = new PrintWriter(f);
 
-            for(String dataType : fileDataTypes){
-                pw.println(dataType);
-                for(Weather weather : weatherMeasurements){
-                    switch (dataType){
-                        case "Temperature":
-                            pw.print(weather.getTemperature().toString());
-                            pw.print(",");
-                            break;
-                        case "Humidity":
-                            pw.print(weather.getHumidity().toString());
-                            pw.print(",");
-                            break;
-                        case "Pressure":
-                            pw.print(weather.getPressure().toString());
-                            pw.print(",");
-                            break;
-                        case "Battery":
-                            pw.print(weather.getBatteryVoltage().toString());
-                            pw.print(",");
-                            break;
-                        case "Date":
-                            pw.print(weather.getDateInCustomString());
-                            pw.print(",");
-                            break;
-                        case "Time":
-                            pw.print(weather.getTimeInCustomString());
-                            pw.print(",");
-                            break;
-                    }
-                }
-            }
+            /*pw.println(fileDataTypes[0] + " " + fileDataTypes[1] + " " + fileDataTypes[2] + " " + fileDataTypes[3] + " "
+                    + fileDataTypes[4] + " " + fileDataTypes[5]);*/
+
+            for(Weather weather : weatherMeasurements)
+                pw.println(weather.getTemperature().toString() + " " +
+                           weather.getHumidity().toString() + " " +
+                           weather.getPressure().toString() + " " +
+                           weather.getBatteryVoltage().toString() + " " +
+                           weather.getDateInCustomString() + " " +
+                           weather.getTimeInCustomString());
             pw.flush();
             pw.close();
             f.close();
